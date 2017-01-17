@@ -7,8 +7,7 @@
 	if($curl_response!=false)
 	{
 		$data=json_decode($curl_response);
-		echo "<table border=1><tr>";
-		echo "<td>Product_Name</td><td>	Image</td><td>	Color</td><td>	Size</td><td>	Weight</td><td>	Manufacturer</td><td>	Price</td></tr><tr>";
+		echo "<table border=1><tr><td>Product_Name</td><td>	Image</td><td>	Color</td><td>	Size</td><td>	Weight</td><td>	Manufacturer</td><td>Price</td></tr><tr>";
 		foreach ($data as $key => $value) {
 			foreach ($value as $key => $value) {
 				if($key=="Image")

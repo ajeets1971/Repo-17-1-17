@@ -12,12 +12,13 @@
 	$Manufacturer=$insert_arr->Manufacturer;
 	$Price=$insert_arr->Price;
 	$Image_Loc=$insert_arr->Image_Loc;
+	$MainSite_Product_id=$insert_arr->MainSite_Product_id;
 
 	$folder="E:/wamp64/www/ChildSite/Uploads/";
  	//move_uploaded_file($Image_Loc,$folder.$Image);
  	copy("E:/wamp64/www/MainSite/Uploads/".$Image,$folder.$Image);
 
-	$query="insert into product(Product_Name,Image,Color,Size,Weight,Manufacturer,Price) values('".$Product_Name."','".$Image."','".$Color."','".$Size."',".$Weight.",'".$Manufacturer."',".$Price.")";
+	$query="insert into product(MainSite_Product_id,Product_Name,Image,Color,Size,Weight,Manufacturer,Price) values(".$MainSite_Product_id.",'".$Product_Name."','".$Image."','".$Color."','".$Size."',".$Weight.",'".$Manufacturer."',".$Price.")";
 	$rs=mysqli_query($con,$query);
 	echo $rs;
 ?>

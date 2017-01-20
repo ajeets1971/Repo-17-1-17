@@ -24,6 +24,10 @@
 	    {
 	    	$sql .= " Order by ".$columns[$_REQUEST['iSortCol_0']] ." ". $_REQUEST['sSortDir_0'];
 	    }
+	    else
+	    {
+	    	$sql .=" Order by ReOrder";
+	    }
 	    if ( isset( $_REQUEST['iDisplayStart'] ) && $_REQUEST['iDisplayLength'] != '-1' )
 	    {
 	            $sql.= " LIMIT ".$_REQUEST['iDisplayStart'].", ".$_REQUEST['iDisplayLength'];
@@ -34,15 +38,19 @@
 		$seq=1;
 		while($row=mysqli_fetch_assoc($r))
 		{
-			$Json['aaData'][$k][]=$seq;
-			$Json['aaData'][$k][]=$row['Product_Name'];
-			$Json['aaData'][$k][]=$row['Color'];
-			$Json['aaData'][$k][]=$row['Size'];
-			$Json['aaData'][$k][]=$row['Weight'];
-			$Json['aaData'][$k][]=$row['Manufacturer'];
-			$Json['aaData'][$k][]=$row['Price'];
-			$k++;
-			$seq++;
+			if($row['is_delete']!=1)
+			{
+				$Json['aaData'][$k][]=$seq;
+				$Json['aaData'][$k][]=$row['Product_Name'];
+				$Json['aaData'][$k][]=$row['Color'];
+				$Json['aaData'][$k][]=$row['Size'];
+				$Json['aaData'][$k][]=$row['Weight'];
+				$Json['aaData'][$k][]=$row['Manufacturer'];
+				$Json['aaData'][$k][]=$row['Price'];
+				$k++;
+				$seq++;
+			}
+			
 		}
 		$Json['iTotalDisplayRecords'] = $total['total'];
 		$Json['sEcho'] =null;

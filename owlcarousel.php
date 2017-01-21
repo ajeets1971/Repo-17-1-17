@@ -25,17 +25,11 @@
 		           	processData: false,
       				contentType: false,
 		        	success: function(response){
-		        		owlcreate();
-		        		$("#owl-demo").owlCarousel({
-						    items : 1,
-						    slideSpeed : 1000,
-						    nav: true,
-						    autoPlay: true,
-						    dots: true,
-						    loop: true,
-						    responsiveRefreshRate : 200, 
-					  	});
-		        		console.log(response);	       
+		        		$("#owl-demo").data('owlCarousel').destroy();
+		        		var content = "<div class='item'><img src='http://localhost/partsSearch/Pictures/"+response+"' ></div>";
+						$("#owl-demo").append(content); 
+    					owlreload();
+		        		console.log(response+$("#owl-demo").html());	       
 		        	}
 				});
 		    });
